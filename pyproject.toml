@@ -1,0 +1,48 @@
+[project]
+name = "bots-cli"
+version = "0.1.0"
+description = "Run a team of agents on your own machine with your Claude Code and Codex subscriptions."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "croniter>=6.2.4",
+    "mcp>=2.3.0",
+]
+
+[project.scripts]
+bots = "cli.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["host", "botsmcp", "cli"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"skills" = "skills"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "pytest-timeout>=2.4.0",
+    "pytest-xdist>=3.8.0",
+    "ruff>=0.17.2",
+    "types-croniter>=6.2.4.20261006",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Parallel by default; a hung test fails after 60s instead of stalling the run.
+# One file serially: uv run pytest -n 0 tests/test_store.py
+addopts = "-n auto"
+timeout = 60

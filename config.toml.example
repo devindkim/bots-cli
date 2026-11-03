@@ -1,0 +1,17 @@
+# Copy to <data folder>/config.toml. Every key is optional and shown with its default.
+max_concurrent = 2   # engine runs at once
+daily_budget = 0     # USD per local day, engine-reported; 0 is off. Subscription logins report notional cost.
+notify = true        # desktop notification on each send_to_user
+
+# Run every turn in a sandbox: "seatbelt" (macOS) or "bwrap" (Linux, needs bubblewrap and passt).
+# isolation = "seatbelt"
+# isolation_scope = "bot"      # default "shared": other bots' folders stay open
+# isolation_read = ["~/.nvm"]  # extra folders a bot may read
+
+# Plugin modules, each exposing PLUGIN = Plugin(...) (host/plugins.py).
+# plugins = ["my_plugins.weather"]
+
+# Engine binaries. Unset ones are found on the PATH.
+# [engines]
+# claude = "~/.local/bin/claude"
+# codex = "/opt/homebrew/bin/codex"
